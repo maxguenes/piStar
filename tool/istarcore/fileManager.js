@@ -81,13 +81,15 @@ function saveModel() {
 
 	return fileManager.outputSavedModel(modelJSON);
 }
-
-function loadModel (inputRaw) {
-	if (inputRaw) {
+function loadModel(inputRaw){
+    var inputModel = $.parseJSON(inputRaw);
+    loadModelJson(inputModel);
+}
+function loadModelJson (inputModel) {
+	if (inputModel) {
 		this.changedModel = true;
 
 		ui.clearDiagram();
-		var inputModel = $.parseJSON(inputRaw);
 
 		if ( inputModel.diagram) {
 			if (inputModel.diagram.width && inputModel.diagram.height) {
