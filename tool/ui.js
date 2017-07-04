@@ -337,6 +337,57 @@ ui.connectLinksToShape = function() {
     },100);
 };
 
+function showLink(response){
+
+    var shareLink = (location.protocol + '//' + location.host + location.pathname )+ "?hash=" +response;
+
+    console.log(shareLink);
+
+    $("#share-link").html(shareLink)
+    $("#dialog-share" ).dialog({
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        // create: function(event, ui) {
+        //     var widget = $(this).dialog("widget");
+        //     $(".ui-dialog-titlebar-close span", widget).removeClass("ui-button-icon ui-icon ui-icon-closethick").addClass("glyphicon glyphicon-remove");
+        // },
+        icons: {},
+        buttons: {
+            "Acessar URL": function() {
+                location.href = shareLink;
+            },
+            "Voltar": function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+
+    $("#dialog-share" ).dialog('open');
+}
+
+$('#shareModelButton').click(function() {
+
+    var model = saveModel();
+
+    $.ajax({
+        type: "POST",
+        url: PI_STAR_URL + "/model/save",
+        contentType: "application/json",
+        data: model,
+        success: function(response) {
+            $('#shareModelButton').show();
+            showLink(response);
+        },
+        error: function(response){
+            console.error("Error while retrieving backend informations. ");
+            console.error(response)
+        }
+    });
+
+});
+
 $('#saveImageButton').click(function() {
     //hide vertex tools before saving
     $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').hide();
@@ -425,6 +476,8 @@ $('#loadButton').click(function () {
 });
 
 ui.setupUi = function() {
+    $('#shareModel').hide();
+    $('#shareModelButton').hide();
     $('#saveImage').hide();
     $('#saveModel').hide();
     $('#diagramWidthInput').val(istar.paper.getArea().width);
