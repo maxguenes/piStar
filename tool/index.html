@@ -17,6 +17,7 @@
     <!-- library-specific styles -->
     <link rel="stylesheet" href="istarcore/lib/joint.min.css" /> <!-- joint js -->
     <link href="lib/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
+    <link href="lib/jquery-ui/jquery-ui.min.css" rel="stylesheet"> <!-- x-editable -->
 
     <!-- custom styles -->
     <link rel="stylesheet" href="pistar.css" />
@@ -146,6 +147,9 @@
         </div>
 
         <div id="appToolbar" class="col-md-3">
+
+            <button type="button" id="shareModelButton"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share Model</button>
+            <span id="shareModel" class="toolbarGroup"></span>
             <button type="button" id="saveImageButton"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Save Image</button>
             <span id="saveImage" class="toolbarGroup"></span>
 
@@ -157,6 +161,10 @@
             <button type="button" id="clearButton"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Clear</button>
 
         </div>
+    </div>
+
+    <div id="dialog-share" class="container" title="Your Share Link">
+        <p<a id="share-link"></a></p>
     </div>
 </div>
 
@@ -256,6 +264,8 @@
 
 <script src="istarcore/lib/joint.min.js"></script>
 <script src="lib/bootstrap/bootstrap.min.js"></script>
+<script src="lib/jquery-ui/jquery-ui.min.js"></script>
+
 
 <script src="lib/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
 
@@ -264,6 +274,7 @@
 <script src="istarcore/istarcore.metamodel.js"></script>
 <script src="istarcore/istarcore.js"></script>
 <script src="istarcore/metamodel.js"></script>
+<script src="istarcore/repository.js"></script>
 
 <!-- tool specific -->
 <script src="istarcore/fileManager.js"></script>
